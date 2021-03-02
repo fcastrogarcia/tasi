@@ -3,17 +3,16 @@ import dbConnect from "utils/dbConnect";
 
 export default async function handler(req, res) {
   const { method, body } = req;
+  const { password, document } = body;
 
   await dbConnect();
-
-  // firmar el token
-  // devolver el usuario con el token
-
-  const { password, document } = body;
 
   switch (method) {
     case "POST":
       try {
+        if (!password || !document)
+          throw new Error("No password or document were provided");
+
         const [user = {}] = await User.find({ document });
 
         if (user.password === password) {

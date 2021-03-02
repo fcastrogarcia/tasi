@@ -1,17 +1,12 @@
-.layout {
-  width: 100vw;
-  max-width: 100%;
-  min-height: 100vh;
-  max-height: 100%;
-  height: 100vh;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .container {
   max-width: 1280px;
   height: 100%;
   display: flex;
+}
+
+.MuiButton-containedPrimary {
+  background: var(--orange-500);
+  &:hover {
+    background: var(--orange-600);
+  }
 }

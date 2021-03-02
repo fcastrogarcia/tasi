@@ -1,0 +1,19 @@
+.container {
+  padding: 24px;
+  display: grid;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr;
+  height: 350px;
+  width: 320px;
+  grid-gap: 12px;
+}
+
+.button {
+  &--number {
+    font-size: 28px;
+  }
+  &--action {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+}

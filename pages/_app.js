@@ -1,5 +1,7 @@
 import "styles/index.scss";
 import Head from "next/head";
+import { StylesProvider } from "@material-ui/core/styles";
+
 // import Link from "next/link";
 
 function MyApp({ Component, pageProps }) {
@@ -8,7 +10,9 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>TASI</title>
       </Head>
-      <Component {...pageProps} />
+      <StylesProvider injectFirst>
+        <Component {...pageProps} />
+      </StylesProvider>
     </>
   );
 }

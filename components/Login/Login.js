@@ -2,18 +2,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Keyboard from "components/Keyboard";
-import Layout from "components/Layout";
 import styles from "./Login.module.scss";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
-
-// Agregar un setTimeout de 20 segundos a la vista que limpie los campo DNI y Clave, en caso de que
-// esta deje de ser usada por el cliente. Tenga en cuenta que cada vez que se realiza una acción en la
-// vista se debería inicializar el setTimeout
-
-// redireccionar si está bien a la vista de operaciones
-// si está mal mostrar el alert de error que diga Datos incorrectos
-// hacer el setTimeout
+import useSetTimeout from "utils/useSetTimeout";
 
 const validateInput = (input, state) => {
   switch (input) {
@@ -35,12 +27,15 @@ const validateSubmit = values => {
 };
 
 const Index = () => {
-  const [value, setValue] = useState({ document: "", password: "" });
+  const initialState = { document: "", password: "" };
+  const [value, setValue] = useState(initialState);
   const [focusedInput, setFocus] = useState("document");
   const [error, setError] = useState({ status: false });
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+
+  const { resetTimeout } = useSetTimeout(() => setValue(initialState));
 
   const handleFocus = e => setFocus(e.target.name);
 
@@ -55,6 +50,8 @@ const Index = () => {
         [input]: prev[input].concat(value),
       };
     });
+
+    resetTimeout();
   };
 
   const handleErase = input => () => {
@@ -66,12 +63,15 @@ const Index = () => {
         [input]: prev[input].slice(0, -1),
       };
     });
+
+    resetTimeout();
   };
 
   const { document, password } = value;
 
   const handleSubmit = async e => {
     e.preventDefault();
+    resetTimeout();
 
     try {
       if (!validateSubmit(value)) throw new Error();
@@ -100,40 +100,38 @@ const Index = () => {
   }, [error]);
 
   return (
-    <Layout>
-      <div className={styles.container}>
-        <Paper elevation={0} variant="outlined">
-          <form className={styles.form}>
-            <p className={styles["form-title"]}>Ingrese DNI y Clave</p>
-            <TextField
-              label="DNI"
-              type="number"
-              name="document"
-              onFocus={handleFocus}
-              value={document}
-              autoFocus
-              required
-              disabled={loading}
-            />
-            <TextField
-              label="Clave"
-              type="password"
-              name="password"
-              onFocus={handleFocus}
-              value={password}
-              required
-              disabled={loading}
-            />
-          </form>
-        </Paper>
-        <Keyboard
-          handleClick={handleClick(focusedInput)}
-          handleErase={handleErase(focusedInput)}
-          disableSubmit={!password || !document || loading}
-          handleSubmit={handleSubmit}
-        />
-      </div>
-    </Layout>
+    <div className={styles.container}>
+      <Paper elevation={0} variant="outlined">
+        <form className={styles.form}>
+          <p className={styles["form-title"]}>Ingrese DNI y Clave</p>
+          <TextField
+            label="DNI"
+            type="number"
+            name="document"
+            onFocus={handleFocus}
+            value={document}
+            autoFocus
+            required
+            disabled={loading}
+          />
+          <TextField
+            label="Clave"
+            type="password"
+            name="password"
+            onFocus={handleFocus}
+            value={password}
+            required
+            disabled={loading}
+          />
+        </form>
+      </Paper>
+      <Keyboard
+        handleClick={handleClick(focusedInput)}
+        handleErase={handleErase(focusedInput)}
+        disableSubmit={!password || !document || loading}
+        handleSubmit={handleSubmit}
+      />
+    </div>
   );
 };
 

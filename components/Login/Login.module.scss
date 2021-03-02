@@ -1,6 +1,21 @@
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 100%;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.form {
+  padding: 32px;
+  display: grid;
+  grid-gap: 32px;
+  width: 250px;
+  height: 250px;
+}
+
+.form-title {
+  font-weight: 600;
+  color: var(--gray-800);
 }

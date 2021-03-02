@@ -1,5 +1,5 @@
 import styles from "./Keyboard.module.scss";
-import { func } from "prop-types";
+import { func, bool } from "prop-types";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 
@@ -13,23 +13,37 @@ const keys = [
   { type: "number", label: "7", value: 7 },
   { type: "number", label: "8", value: 8 },
   { type: "number", label: "9", value: 9 },
-  { type: "action", label: "Borrar" },
+  { type: "erase", label: "Borrar" },
   { type: "number", label: "0", value: 0 },
-  { type: "action", label: "Continuar" },
+  { type: "submit", label: "Continuar" },
 ];
 
-const Keyboard = ({ handleChange, handleNext, handleCancellation }) => {
+const Keyboard = ({
+  handleClick,
+  handleSubmit,
+  handleErase,
+  disableSubmit,
+}) => {
   return (
     <Paper elevation={0} variant="outlined">
       <div className={styles.container}>
         {keys.map(({ type, label, value }, index) => {
+          let props = {
+            key: index.toString(),
+            variant: "contained",
+            color: "primary",
+            className: styles[`button--${type}`],
+            onClick: type === "erase" ? handleErase : handleClick(value),
+          };
+
+          if (type === "submit") {
+            props.type = type;
+            props.disabled = disableSubmit;
+            props.onClick = handleSubmit;
+          }
+
           return (
-            <Button
-              variant="contained"
-              color="primary"
-              key={index.toString()}
-              className={styles[`button--${type}`]}
-            >
+            <Button key={index.toString()} {...props}>
               {label}
             </Button>
           );
@@ -42,13 +56,15 @@ const Keyboard = ({ handleChange, handleNext, handleCancellation }) => {
 export default Keyboard;
 
 Keyboard.propTypes = {
-  handleChange: func,
-  handleNext: func,
-  handleCancellation: func,
+  handleClick: func,
+  handleErase: func,
+  handleSubmit: func,
+  disableSubmit: bool,
 };
 
 Keyboard.defaultProps = {
-  handleChange: () => {},
-  handleNext: () => {},
-  handleCancellation: () => {},
+  handleClick: () => {},
+  handleErase: () => {},
+  handleSubmit: () => {},
+  disableSubmit: false,
 };

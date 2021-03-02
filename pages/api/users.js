@@ -11,14 +11,19 @@ export default async function handler(req, res) {
     case "POST":
       try {
         if (!password || !document)
-          throw new Error("No password or document were provided");
+          throw new Error("Documento y contraseña son datos obligatorios");
 
-        const [user = {}] = await User.find({ document });
+        const [user] = await User.find({ document });
+
+        if (!user)
+          throw new Error("El documento no pertenece a un usuario registrado");
 
         if (user.password === password) {
-          res.status(200).json({ success: true, data: user });
+          res
+            .status(200)
+            .json({ success: true, user: { id: user._id, name: user.name } });
         } else {
-          throw new Error("Password does not match");
+          throw new Error("Contraseña incorrecta");
         }
       } catch (error) {
         console.error(error);

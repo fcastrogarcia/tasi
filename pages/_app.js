@@ -1,4 +1,4 @@
-import "styles/overrides.scss";
+import "styles/index.scss";
 import Head from "next/head";
 // import Link from "next/link";
 

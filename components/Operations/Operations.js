@@ -6,6 +6,12 @@ import useSetTimeout from "hooks/useSetTimeout";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+const actions = [
+  { path: "/extraction", label: "extracción" },
+  { path: "/deposit", label: "depósito" },
+  { path: "/balance", label: "consulta de saldo" },
+];
+
 const Operations = () => {
   const router = useRouter();
   const { user } = useCheckUser();
@@ -20,33 +26,17 @@ const Operations = () => {
         <h3>¿Qué operación deseas realizar?</h3>
       </div>
       <div className={styles.buttons}>
-        <Link href="/extraction">
-          <Button
-            variant="outlined"
-            color="primary"
-            className={styles["button--action"]}
-          >
-            Extracción
-          </Button>
-        </Link>
-        <Link href="/deposit">
-          <Button
-            variant="outlined"
-            color="primary"
-            className={styles["button--action"]}
-          >
-            Depósito
-          </Button>
-        </Link>
-        <Link href="/balance">
-          <Button
-            variant="outlined"
-            color="primary"
-            className={styles["button--action"]}
-          >
-            Consulta de saldo
-          </Button>
-        </Link>
+        {actions.map(({ path, label }, index) => (
+          <Link key={index.toString()} href={path}>
+            <Button
+              variant="outlined"
+              color="primary"
+              className={styles["button--action"]}
+            >
+              {label}
+            </Button>
+          </Link>
+        ))}
       </div>
       <Link href="/cancellation">
         <Button

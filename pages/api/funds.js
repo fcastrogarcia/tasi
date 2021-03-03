@@ -3,7 +3,7 @@ import Fund from "models/Fund";
 
 export default async function handler(req, res) {
   const {
-    query: { id },
+    query: { id: user },
     method,
   } = req;
 
@@ -12,14 +12,24 @@ export default async function handler(req, res) {
   switch (method) {
     case "PUT":
       try {
-        const fund = await Fund.findByIdAndUpdate(id, req.body, {
-          new: true,
-          runValidators: true,
-        });
+        const fund = await Fund.findOne({ user });
+
         if (!fund) {
           return res.status(400).json({ success: false });
         }
-        res.status(200).json({ success: true, data: fund });
+
+        const nextAmount = fund.amount + req.body.amount;
+
+        if (nextAmount <= 0) {
+          return res
+            .status(400)
+            .json({ success: false, message: "Insuficcient funds" });
+        }
+
+        fund.amount = nextAmount;
+        const nextFund = await fund.save();
+
+        res.status(200).json({ success: true, data: nextFund });
       } catch (error) {
         res.status(400).json({ success: false });
       }

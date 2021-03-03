@@ -1,0 +1,29 @@
+.container {
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.actions-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 32px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.paper {
+  padding: 32px;
+}
+
+.form {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 64px;
+}
+
+.divider {
+  display: grid;
+}

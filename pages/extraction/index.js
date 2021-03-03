@@ -1,5 +1,14 @@
-const Extraction = () => {
-  return <div className="layout">Extraction</div>;
+import Layout from "components/Layout";
+import Extraction from "components/Extraction";
+import useCheckUser from "hooks/useCheckUser";
+
+const ExtractionPage = () => {
+  const { user } = useCheckUser();
+  return (
+    <Layout>
+      <Extraction user={user} />
+    </Layout>
+  );
 };
 
-export default Extraction;
+export default ExtractionPage;

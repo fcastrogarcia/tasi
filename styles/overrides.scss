@@ -39,12 +39,11 @@ body {
   overflow: initial;
   margin: 0;
   overscroll-behavior-y: none;
-  font-family: Helvetica, sans-serif;
+  font-family: "Roboto";
 }
 
 body,
 button {
-  font-family: "Manrope", sans-serif;
   color: initial;
 }
 
@@ -66,6 +65,10 @@ button {
   font-size: inherit;
   outline: none;
   cursor: pointer;
+}
+
+h2 {
+  color: var(--gray-900);
 }
 
 .MuiButton-containedPrimary {

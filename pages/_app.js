@@ -1,8 +1,7 @@
 import "styles/index.scss";
 import Head from "next/head";
 import { StylesProvider } from "@material-ui/core/styles";
-
-// import Link from "next/link";
+import "fontsource-roboto";
 
 function MyApp({ Component, pageProps }) {
   return (

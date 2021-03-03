@@ -67,3 +67,20 @@ button {
   outline: none;
   cursor: pointer;
 }
+
+.MuiButton-containedPrimary {
+  background: var(--orange-500);
+  &:hover {
+    background: var(--orange-600);
+  }
+}
+
+.MuiButton-outlinedPrimary {
+  color: var(--orange-500);
+  border-color: var(--orange-500);
+
+  &:hover {
+    color: var(--orange-600);
+    border-color: var(--orange-600);
+  }
+}

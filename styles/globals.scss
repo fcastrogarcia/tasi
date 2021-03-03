@@ -1,12 +1,8 @@
 .container {
-  max-width: 1280px;
-  height: 100%;
   display: flex;
-}
-
-.MuiButton-containedPrimary {
-  background: var(--orange-500);
-  &:hover {
-    background: var(--orange-600);
-  }
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  max-width: 1280px;
 }

@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 
 let timeout;
 
-const useSetTimeout = (callback = () => {}) => {
+const useSetTimeout = (callback = () => {}, time = 20000) => {
   const [expired, setExpiration] = useState(false);
 
   const resetTimeout = () => {
     if (timeout) clearTimeout(timeout);
-    timeout = setTimeout(() => setExpiration(true), 20000);
+    timeout = setTimeout(() => setExpiration(true), time);
   };
 
   useEffect(() => {

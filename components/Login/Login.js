@@ -5,7 +5,7 @@ import Keyboard from "components/Keyboard";
 import styles from "./Login.module.scss";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
-import useSetTimeout from "utils/useSetTimeout";
+import useSetTimeout from "hooks/useSetTimeout";
 
 const validateInput = (input, state) => {
   switch (input) {
@@ -100,7 +100,7 @@ const Index = () => {
   }, [error]);
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Paper elevation={0} variant="outlined">
         <form className={styles.form}>
           <p className={styles["form-title"]}>Ingrese DNI y Clave</p>
@@ -110,7 +110,6 @@ const Index = () => {
             name="document"
             onFocus={handleFocus}
             value={document}
-            autoFocus
             required
             disabled={loading}
           />

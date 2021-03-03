@@ -35,7 +35,7 @@ const Index = () => {
 
   const router = useRouter();
 
-  const { resetTimeout } = useSetTimeout(() => setValue(initialState));
+  useSetTimeout(() => setValue(initialState));
 
   const handleFocus = e => setFocus(e.target.name);
 
@@ -50,8 +50,6 @@ const Index = () => {
         [input]: prev[input].concat(value),
       };
     });
-
-    resetTimeout();
   };
 
   const handleErase = input => () => {
@@ -63,15 +61,12 @@ const Index = () => {
         [input]: prev[input].slice(0, -1),
       };
     });
-
-    resetTimeout();
   };
 
   const { document, password } = value;
 
   const handleSubmit = async e => {
     e.preventDefault();
-    resetTimeout();
 
     try {
       if (!validateSubmit(value)) throw new Error();

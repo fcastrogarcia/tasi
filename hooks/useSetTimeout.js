@@ -11,18 +11,16 @@ const useSetTimeout = (callback = () => {}, time = 20000) => {
   };
 
   useEffect(() => {
-    if (expired) {
+    if (expired && typeof callback === "function") {
       callback();
     }
   }, [expired]);
 
   useEffect(() => {
     resetTimeout();
+    document.addEventListener("click", () => resetTimeout());
+    return () => document.removeEventListener("click", () => resetTimeout());
   }, []);
-
-  return {
-    resetTimeout,
-  };
 };
 
 export default useSetTimeout;

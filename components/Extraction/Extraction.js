@@ -49,7 +49,12 @@ const Extraction = ({ user }) => {
         setLoading(true);
         axios
           .put(`/api/funds?id=${user.id}`, { amount: -Number.parseInt(value) })
-          .then(() => router.push("/success"))
+          .then(() =>
+            router.push({
+              pathname: "/success",
+              query: { amount: value, operation: "extraction" },
+            })
+          )
           .catch(() => setOpen(true))
           .finally(() => setLoading(false));
         break;

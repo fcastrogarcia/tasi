@@ -11,10 +11,10 @@ const useStyles = makeStyles({
   },
 });
 
-const ProgressContainer = ({ className, loading, children }) => {
+const ProgressContainer = ({ className, loading, children, ...rest }) => {
   const classes = useStyles();
   return (
-    <div className={cx("container", className)}>
+    <div className={cx("container", className)} {...rest}>
       {loading && <LinearProgress className={classes.progress} />}
       {children}
     </div>
@@ -30,6 +30,6 @@ ProgressContainer.propTypes = {
 };
 
 ProgressContainer.defaultProps = {
-  className: {},
+  className: "",
   loading: false,
 };

@@ -6,6 +6,7 @@ import styles from "./Login.module.scss";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import useSetTimeout from "hooks/useSetTimeout";
+import ProgressContainer from "components/ProgressContainer";
 
 const validateInput = (input, state) => {
   switch (input) {
@@ -95,7 +96,7 @@ const Index = () => {
   }, [error]);
 
   return (
-    <div className="container">
+    <ProgressContainer loading={loading}>
       <Paper elevation={0} variant="outlined">
         <form className={styles.form}>
           <p className={styles["form-title"]}>Ingrese DNI y Clave</p>
@@ -125,7 +126,7 @@ const Index = () => {
         disableSubmit={!password || !document || loading}
         handleSubmit={handleSubmit}
       />
-    </div>
+    </ProgressContainer>
   );
 };
 

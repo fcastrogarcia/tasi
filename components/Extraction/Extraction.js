@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import cx from "classnames";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
 import useSetTimeout from "hooks/useSetTimeout";
@@ -14,6 +13,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import InsufficientFunds from "components/InsufficientFunds";
+import ProgressContainer from "components/ProgressContainer";
 
 const radios = [
   [
@@ -62,7 +62,7 @@ const Extraction = ({ user }) => {
   };
 
   return (
-    <div className={cx("container", styles.container)}>
+    <ProgressContainer className={styles.container} loading={loading}>
       <div>
         <Typography variant="h3" gutterBottom>
           Extracción
@@ -108,7 +108,7 @@ const Extraction = ({ user }) => {
         </Button>
       </div>
       <InsufficientFunds handleClose={handleClose} open={open} />
-    </div>
+    </ProgressContainer>
   );
 };
 

@@ -79,6 +79,14 @@ h3 {
   }
 }
 
+.MuiLinearProgress-barColorPrimary {
+  background: var(--orange-500);
+}
+
+.MuiLinearProgress-colorPrimary {
+  background: var(--gray-300);
+}
+
 .MuiButton-outlinedPrimary {
   color: var(--orange-500);
   border-color: var(--orange-500);

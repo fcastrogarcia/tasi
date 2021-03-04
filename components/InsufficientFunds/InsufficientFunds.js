@@ -39,17 +39,17 @@ const InsufficientFunds = ({ handleClose, open }) => {
       </DialogTitle>
       <DialogActions className={classes.actions}>
         <Link href="/cancellation">
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={handleClose}>
             cancelar
           </Button>
         </Link>
         <Link href="/balance">
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={handleClose}>
             consultar saldo
           </Button>
         </Link>
-        <Link href="/different-amount">
-          <Button variant="contained" color="primary">
+        <Link href="/extraction/different-amount">
+          <Button variant="contained" color="primary" onClick={handleClose}>
             otro monto
           </Button>
         </Link>

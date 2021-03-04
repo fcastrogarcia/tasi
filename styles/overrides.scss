@@ -89,6 +89,7 @@ h3 {
   }
 }
 
-.MuiRadio-colorPrimary.Mui-checked {
+.MuiRadio-colorPrimary.Mui-checked,
+.MuiCircularProgress-colorPrimary {
   color: var(--orange-500);
 }

@@ -10,6 +10,17 @@ export default async function handler(req, res) {
   await dbConnect();
 
   switch (method) {
+    case "GET":
+      try {
+        const fund = await Fund.findOne({ user });
+
+        if (!fund) throw new Error("No user found");
+
+        res.status(200).json({ success: true, fund });
+      } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+      }
+      break;
     case "PUT":
       try {
         const fund = await Fund.findOne({ user });

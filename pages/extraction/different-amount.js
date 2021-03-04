@@ -1,10 +1,12 @@
 import Layout from "components/Layout";
 import useCheckUser from "hooks/useCheckUser";
+import DifferentAmount from "components/DifferentAmount";
 
 const DifferentAmountPage = () => {
+  const { user } = useCheckUser();
   return (
     <Layout>
-      <div>Different Amount</div>
+      <DifferentAmount user={user} />
     </Layout>
   );
 };

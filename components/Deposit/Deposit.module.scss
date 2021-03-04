@@ -1,0 +1,39 @@
+.container {
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.title {
+  position: relative;
+  bottom: 64px;
+}
+
+.btn {
+  &--cancel {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+  }
+}
+
+.form {
+  height: 350px;
+  display: grid;
+  padding: 24px;
+  grid-template: 32px repeat(4, 1fr) / 1fr 1fr;
+  grid-gap: 16px;
+}
+
+.progress {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}

@@ -37,7 +37,7 @@ const Balance = () => {
   const { user } = useCheckUser();
   const router = useRouter();
   const classes = useStyles();
-  // useSetTimeout(() => router.push("/"), 15000);
+  useSetTimeout(() => router.push("/"), 15000);
 
   useEffect(() => {
     if (!user.id) return;

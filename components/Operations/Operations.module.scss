@@ -20,15 +20,3 @@
     color: var(--gray-700);
   }
 }
-
-.button {
-  &--action {
-    margin: 0 12px;
-    padding: 14px 32px;
-  }
-  &--cancel {
-    position: absolute;
-    bottom: 32px;
-    right: 32px;
-  }
-}

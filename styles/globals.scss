@@ -6,3 +6,15 @@
   width: 100%;
   max-width: 1280px;
 }
+
+.btn {
+  &--action {
+    margin: 0 12px;
+    padding: 14px 32px;
+  }
+  &--cancel {
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+  }
+}

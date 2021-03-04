@@ -28,22 +28,14 @@ const Operations = () => {
       <div className={styles.buttons}>
         {actions.map(({ path, label }, index) => (
           <Link key={index.toString()} href={path}>
-            <Button
-              variant="outlined"
-              color="primary"
-              className={styles["button--action"]}
-            >
+            <Button variant="outlined" color="primary" className="btn--action">
               {label}
             </Button>
           </Link>
         ))}
       </div>
       <Link href="/cancellation">
-        <Button
-          variant="contained"
-          color="primary"
-          className={styles["button--cancel"]}
-        >
+        <Button variant="contained" color="primary" className="btn--cancel">
           Cancelar
         </Button>
       </Link>

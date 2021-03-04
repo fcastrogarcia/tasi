@@ -1,6 +1,6 @@
 import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
-import Link from "next/Link";
+import Link from "next/link";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import { makeStyles } from "@material-ui/core/styles";

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/Link";
+import Link from "next/link";
 import cx from "classnames";
 import axios from "axios";
 import Button from "@material-ui/core/Button";

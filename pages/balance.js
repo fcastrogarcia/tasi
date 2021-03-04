@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/Link";
+import Link from "next/link";
 import axios from "axios";
 import cx from "classnames";
 import NumberFormat from "react-number-format";

@@ -64,7 +64,7 @@ const Extraction = ({ user }) => {
   return (
     <ProgressContainer className={styles.container} loading={loading}>
       <div>
-        <Typography variant="h3" gutterBottom>
+        <Typography variant="h3" gutterBottom className={styles.title}>
           Extracción
         </Typography>
       </div>

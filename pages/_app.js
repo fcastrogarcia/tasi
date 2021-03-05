@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import "styles/index.scss";
-import Head from "next/head";
-import { StylesProvider } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
+import Head from "next/head";
+import { StylesProvider, ThemeProvider } from "@material-ui/core/styles";
+import theme from "styles/theme";
+import "styles/index.scss";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -18,9 +19,11 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>TASI</title>
       </Head>
-      <StylesProvider injectFirst>
-        <Component {...pageProps} />
-      </StylesProvider>
+      <ThemeProvider theme={theme}>
+        <StylesProvider injectFirst>
+          <Component {...pageProps} />
+        </StylesProvider>
+      </ThemeProvider>
     </>
   );
 }

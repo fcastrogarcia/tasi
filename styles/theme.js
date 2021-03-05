@@ -1,4 +1,4 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme, withStyles } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   palette: {
@@ -10,5 +10,19 @@ const theme = createMuiTheme({
     },
   },
 });
+
+export const GlobalCss = withStyles({
+  "@global": {
+    ".container": {
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "center",
+      height: "100%",
+      width: "100%",
+      maxWidth: 1280,
+      position: "relative",
+    },
+  },
+})(() => null);
 
 export default theme;

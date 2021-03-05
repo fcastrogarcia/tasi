@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 import Head from "next/head";
 import { StylesProvider, ThemeProvider } from "@material-ui/core/styles";
-import theme from "styles/theme";
+import theme, { GlobalCss } from "styles/theme";
 import "styles/index.scss";
 
 function MyApp({ Component, pageProps }) {
@@ -21,6 +21,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <ThemeProvider theme={theme}>
         <StylesProvider injectFirst>
+          <GlobalCss />
           <Component {...pageProps} />
         </StylesProvider>
       </ThemeProvider>

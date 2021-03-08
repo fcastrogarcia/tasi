@@ -7,17 +7,19 @@ const useStyles = makeStyles({
   progress: {
     width: "100%",
     position: "absolute",
-    top: 0,
+    top: "4em",
   },
 });
 
 const ProgressContainer = ({ className, loading, children, ...rest }) => {
   const classes = useStyles();
   return (
-    <div className={cx("container", className)} {...rest}>
+    <>
       {loading && <LinearProgress className={classes.progress} />}
-      {children}
-    </div>
+      <main className={cx("container", className)} {...rest}>
+        {children}
+      </main>
+    </>
   );
 };
 

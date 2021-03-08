@@ -7,10 +7,12 @@ import { StylesProvider, ThemeProvider } from "@material-ui/core/styles";
 import theme, { GlobalCss } from "styles/theme";
 import "styles/index.scss";
 
-const fetcher = (path, method) => {
+const fetcher = (path, method, data) => {
   return axios({
     method,
-    url: `/api${path}`,
+    baseURL: "/api",
+    url: path,
+    data,
   }).then(res => res.data);
 };
 

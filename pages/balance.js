@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import axios from "axios";
 import cx from "classnames";
 import NumberFormat from "react-number-format";
 import Layout from "components/Layout";
@@ -11,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import useSetTimeout from "hooks/useSetTimeout";
 import useCheckUser from "hooks/useCheckUser";
+import useSWR from "swr";
 
 const useStyles = makeStyles({
   flexColumn: {
@@ -31,28 +30,16 @@ const useStyles = makeStyles({
 });
 
 const Balance = () => {
-  const [funds, setFunds] = useState(null);
-  const [loading, setLoading] = useState(false);
-
   const { user } = useCheckUser();
   const router = useRouter();
   const classes = useStyles();
   useSetTimeout(() => router.push("/"), 15000);
 
-  useEffect(() => {
-    if (!user.id) return;
-
-    setLoading(true);
-    axios
-      .get(`/api/funds?id=${user.id}`)
-      .then(({ data }) => setFunds(data.fund.amount))
-      .catch(err => console.log(err))
-      .finally(() => setLoading(false));
-  }, [user]);
+  const { data } = useSWR(user.id ? [`/funds?id=${user.id}`, "GET"] : null);
 
   return (
     <Layout>
-      {loading ? (
+      {!data ? (
         <CircularProgress color="primary" />
       ) : (
         <div className={cx(classes.flexColumn, "container")}>
@@ -62,7 +49,7 @@ const Balance = () => {
             </Typography>
             <Typography variant="h2" align="center">
               <NumberFormat
-                value={funds}
+                value={data?.fund?.amount}
                 displayType={"text"}
                 decimalSeparator={","}
                 thousandSeparator={"."}

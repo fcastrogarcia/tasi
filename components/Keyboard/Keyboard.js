@@ -29,7 +29,6 @@ const Keyboard = ({
       <div className={styles.container}>
         {keys.map(({ type, label, value }, index) => {
           let props = {
-            key: index.toString(),
             variant: "contained",
             color: "primary",
             className: styles[`button--${type}`],

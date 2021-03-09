@@ -9,11 +9,13 @@ import useSetTimeout from "hooks/useSetTimeout";
 import ProgressContainer from "components/ProgressContainer";
 
 const validateInput = (input, state) => {
+  const { document, password } = state;
+
   switch (input) {
     case "document":
-      return state.document.length === 8 ? false : true;
+      return document.length < 8;
     case "password":
-      return state.password.length === 4 ? false : true;
+      return password.length < 4;
     default:
       return true;
   }

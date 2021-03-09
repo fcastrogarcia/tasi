@@ -1,5 +1,5 @@
 import styles from "./Keyboard.module.scss";
-import { func, bool } from "prop-types";
+import { func, bool, string } from "prop-types";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 
@@ -18,52 +18,46 @@ const keys = [
   { type: "submit", label: "Continuar" },
 ];
 
-const Keyboard = ({
-  handleClick,
-  handleSubmit,
-  handleErase,
-  disableSubmit,
-}) => {
-  return (
-    <Paper elevation={0} variant="outlined">
-      <div className={styles.container}>
-        {keys.map(({ type, label, value }, index) => {
-          let props = {
-            variant: "contained",
-            color: "primary",
-            className: styles[`button--${type}`],
-            onClick: type === "erase" ? handleErase : handleClick(value),
-          };
+const Keyboard = ({ handleClick, handleErase, disableSubmit, formId }) => (
+  <Paper elevation={0} variant="outlined">
+    <div className={styles.container}>
+      {keys.map(({ type, label, value }, index) => {
+        let props = {
+          variant: "contained",
+          color: "primary",
+          className: styles[`button--${type}`],
+          onClick: type === "erase" ? handleErase : handleClick(value),
+        };
 
-          if (type === "submit") {
-            props.type = type;
-            props.disabled = disableSubmit;
-            props.onClick = handleSubmit;
-          }
+        if (type === "submit") {
+          props.type = type;
+          props.disabled = disableSubmit;
+          props.form = formId;
+          props.onClick = null;
+        }
 
-          return (
-            <Button key={index.toString()} {...props}>
-              {label}
-            </Button>
-          );
-        })}
-      </div>
-    </Paper>
-  );
-};
+        return (
+          <Button key={index.toString()} {...props}>
+            {label}
+          </Button>
+        );
+      })}
+    </div>
+  </Paper>
+);
 
 export default Keyboard;
 
 Keyboard.propTypes = {
   handleClick: func,
   handleErase: func,
-  handleSubmit: func,
   disableSubmit: bool,
+  formId: string,
 };
 
 Keyboard.defaultProps = {
   handleClick: () => {},
   handleErase: () => {},
-  handleSubmit: () => {},
   disableSubmit: false,
+  formId: "",
 };

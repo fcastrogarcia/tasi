@@ -58,13 +58,13 @@ const Deposit = ({ user }) => {
     });
   };
 
-  const handleSubmit = () => {
-    setLoading(true);
+  const handleSubmit = e => {
+    e.preventDefault();
 
+    setLoading(true);
     axios
       .put(`/api/funds?id=${user.id}`, { amount: Number.parseInt(totalAmount) })
       .then(() => {
-        setValue(initialState);
         setLoading(false);
         router.push({
           pathname: "/success",
@@ -88,7 +88,7 @@ const Deposit = ({ user }) => {
       </Typography>
       <div className={styles.content}>
         <Paper elevation={0} variant="outlined">
-          <form className={styles.form}>
+          <form id="deposit" className={styles.form} onSubmit={handleSubmit}>
             <Typography variant="body1">Pesos</Typography>
             <Typography variant="body1">Cantidad</Typography>
             <Typography variant="h5">$100</Typography>
@@ -144,7 +144,7 @@ const Deposit = ({ user }) => {
             disableSubmit={hasValue(value)}
             handleClick={handleClick(selectedBill)}
             handleErase={handleErase(selectedBill)}
-            handleSubmit={handleSubmit}
+            formId="deposit"
           />
         </div>
       </div>

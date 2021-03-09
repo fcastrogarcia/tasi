@@ -100,7 +100,7 @@ const Index = () => {
   return (
     <ProgressContainer loading={loading}>
       <Paper elevation={0} variant="outlined">
-        <form className={styles.form}>
+        <form id="login" className={styles.form} onSubmit={handleSubmit}>
           <p className={styles["form-title"]}>Ingrese DNI y Clave</p>
           <TextField
             label="DNI"
@@ -123,10 +123,10 @@ const Index = () => {
         </form>
       </Paper>
       <Keyboard
+        formId="login"
         handleClick={handleClick(focusedInput)}
         handleErase={handleErase(focusedInput)}
         disableSubmit={!password || !document || loading}
-        handleSubmit={handleSubmit}
       />
     </ProgressContainer>
   );

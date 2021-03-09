@@ -58,7 +58,8 @@ const DifferentAmount = ({ user }) => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
     if (!value || !user.id) return;
 
     setLoading(true);
@@ -84,7 +85,11 @@ const DifferentAmount = ({ user }) => {
         Otro monto
       </Typography>
       <div className={classes.content}>
-        <div className={classes.amount}>
+        <form
+          id="different-amount"
+          className={classes.amount}
+          onSubmit={handleSubmit}
+        >
           <Typography variant="h3" align="center">
             <NumberFormat
               value={value || 0}
@@ -94,12 +99,12 @@ const DifferentAmount = ({ user }) => {
               prefix={"$"}
             />
           </Typography>
-        </div>
+        </form>
         <Keyboard
           handleClick={handleClick}
           handleErase={handleErase}
-          handleSubmit={handleSubmit}
           disableSubmit={!value || loading}
+          formId="different-amount"
         />
       </div>
       <Link href="/cancellation">

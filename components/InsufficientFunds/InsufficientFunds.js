@@ -27,8 +27,7 @@ const InsufficientFunds = ({ handleClose, open }) => {
     <Dialog
       open={open}
       onClose={handleClose}
-      aria-labelledby="simple-modal-title"
-      aria-describedby="simple-modal-description"
+      aria-labelledby="insufficient-funds"
       classes={{
         paper: classes.paper,
       }}
